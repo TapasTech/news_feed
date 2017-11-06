@@ -13,7 +13,7 @@ RUN apk add --update \
     bash \
     mysql-dev \
     build-base \
-    libxml2 \
-    libxslt \
+    libxml2-dev \
+    libxslt-dev \
   && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/*
