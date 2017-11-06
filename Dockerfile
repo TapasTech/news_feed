@@ -14,5 +14,6 @@ RUN apk add --update \
     mysql-dev \
     build-base \
     libxml2 \
+    libxslt \
   && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/*
