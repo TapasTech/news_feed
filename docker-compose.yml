@@ -11,6 +11,8 @@ services:
     mem_limit: '256M'
     memswap_limit: '256M'
     mem_reservation: '256M'
+    links:
+      - redis
 
   celery:
     extends:
@@ -20,6 +22,8 @@ services:
     mem_limit: '1024M'
     memswap_limit: '1024M'
     mem_reservation: '512M'
+    links:
+      - redis
 
   engine:
     extends:
@@ -29,3 +33,10 @@ services:
     mem_limit: '256M'
     memswap_limit: '256M'
     mem_reservation: '256M'
+    links:
+      - redis
+
+  redis:
+    image: redis
+    expose:
+      - 6379
