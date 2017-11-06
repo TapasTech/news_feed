@@ -6,4 +6,9 @@ WORKDIR /app
 
 ADD ./ ./
 
-RUN pip install -r requirements.txt
+RUN apk add --update \
+    bash \
+    mysql-dev \
+    build-base \
+  && pip install -r requirements.txt \
+  && rm -rf /var/cache/apk/*
