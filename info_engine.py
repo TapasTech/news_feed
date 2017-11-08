@@ -78,20 +78,29 @@ def extract(w_id):
         except Exception as e:
             log(ERROR, str(e))
 
+def is_fast_gen(w):
+    w.company.industry in ['实时资讯', '国家机构'])
 
+# 低频抓取
 def gen_info():
-    # random.shuffle(websites)
     for w in websites[:]:
         if (w.url not in blacklist_site) and (w.company.name_cn not in blacklist_company):
-            extract.delay(w.id)
+            if (not is_fast_gen(w)):
+                extract.delay(w.id)
 
-
-
-
-
+# 高频抓取
+def gen_info_fast():
+    for w in websites[:]:
+        if (w.url not in blacklist_site) and (w.company.name_cn not in blacklist_company):
+            if (is_fast_gen(w)):
+                extract.delay(w.id)
 
 if __name__ == '__main__':
     while True:
+        for i in range(0, 8):
+            gen_info_fast()
+            time.sleep(60 * CRAWL_INTERVAL)
+
+        gen_info_fast()
         gen_info()
         time.sleep(60 * CRAWL_INTERVAL)
-
