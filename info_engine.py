@@ -79,7 +79,7 @@ def extract(w_id):
             log(ERROR, str(e))
 
 def is_fast_gen(w):
-    w.company.industry in ['实时资讯', '国家机构'])
+    w.company.industry == "实时资讯" or w.company.industry == "国家机构"
 
 # 低频抓取
 def gen_info():
