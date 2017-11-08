@@ -7,7 +7,7 @@ RUN echo " [global]\ntrusted-host=mirrors.aliyun.com\nindex-url=http://mirrors.a
 
 WORKDIR /app
 
-ADD ./ ./
+ADD ./requirements.txt ./requirements.txt
 
 RUN apk add --update \
     bash \
@@ -17,3 +17,5 @@ RUN apk add --update \
     libxslt-dev \
   && pip install -r requirements.txt \
   && rm -rf /var/cache/apk/*
+
+ADD ./ ./
